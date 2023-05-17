@@ -15,56 +15,40 @@ var finalJogo = document.getElementById("vitoriaTexto");
 var mostraChances = document.getElementById("totalDeChances"); 
 var img = document.getElementById("imagemJogo");
 var dica = document.getElementById("dica");
-
   //possiveis palavras para o jogo
 var comidas = ['POLENTA', 'BANANA', 'LARANJA', 'BOLACHA', 'SORVETE', 'FRANGO', 'PICANHA', 'ABOBORA', 'RATATOUILLE', 'BATATA', 'COSTELAO', 'FEIJOADA', 'CUCA'];
 var vestimentas = ['MEIAS', 'CALÇADO', 'BOTA', 'JAQUETA', 'TOUCA', 'BLUSA', 'TENIS', 'CAMISA', 'CALÇA', 'VESTIDO', 'CUECA', 'LUVAS', 'TERNO', 'CHINELO'];
 var paises = ['BRASIL', 'CHINA', 'DINAMARCA', 'MONGOLIA', 'RUSSIA', 'MEXICO', 'ARGENTINA', 'CAZAQUISTAO', 'NEPAL', 'AUSTRALIA', 'ANGOLA', 'MOÇAMBIQUE', 'CANADA', 'POLONIA', 'PORTUGAL'];
 
 mostraChances.innerHTML = 'VIDAS: ' + chances;
-
 //Funções
 
 function escolheTemaPalavra(){
-
 var temasJogo = [comidas, vestimentas, paises];
-
 var escolheTema = temasJogo[Math.floor(Math.random() * temasJogo.length)];
-
 if (escolheTema == temasJogo[0]){
   dica.innerHTML = 'TEMA: COMIDA';
-
 } else if(escolheTema == temasJogo[1]) {
   dica.innerHTML = 'TEMA: VESTIMENTAS';
-
 } else {
   dica.innerHTML = 'TEMA: PAISES';
 }
-
 var escolhePalavra = escolheTema[Math.floor(Math.random() * escolheTema.length)];
-
 palavraSecreta = escolhePalavra.split('');
-
-console.log(escolhePalavra);
 }
-
   //Mostra quantas palavras
 function desenhaPalavraSecreta() {
   espacoPalavra.innerHTML = '';
   for (var i = 0; i < palavraSecreta.length; i++) {
     espacoPalavra.append("_ ");
-    
   }
 }
   //Pega o chute do jogador e armazena ela
 function pegaChute() {
   chute = chuteJogador.value.toUpperCase(); 
-  console.log(chute);
-  
   if (chute && !letrasJaChutadas.includes(chute)) {
     letrasJaChutadas.push(chute); 
-    escreveAcerto();
-      
+    escreveAcerto();     
   } else {
     avisoJogador.innerHTML = ("Você já chutou " + chute);  
   }
@@ -72,11 +56,9 @@ function pegaChute() {
   //inclue o acerto na forca
 function escreveAcerto() {
   espacoPalavra.innerHTML = "";
-
   for (var i = 0; i < palavraSecreta.length; i++) {
     if (letrasJaChutadas.includes(palavraSecreta[i])) {
         espacoPalavra.append(palavraSecreta[i]);
-
     } else {
         espacoPalavra.append("_");
     }
@@ -103,11 +85,7 @@ function escreveAcerto() {
     finalJogo.innerHTML = "Você o matou";
     finalJogo.style.animation = 'none';
   }
-
-  console.log('quantidade de acertos'+ acertos);
-  console.log('quantidade de chances '+ chances); 
 }   
-
 function alteraImg(){
  if (chances == 5){
   img.src = 'img/fase1.png';
@@ -128,11 +106,6 @@ function alteraImg(){
   img.src = 'img/fase6.png';
  }
 }
-
 //executa
-
 escolheTemaPalavra();
 desenhaPalavraSecreta();
-
-
-
